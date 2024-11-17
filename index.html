@@ -1,1 +1,134 @@
-<h1>Hello, world!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front Page</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .corner-link {
+            position: absolute;
+            font-size: 1rem;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .corner-link:hover {
+            color: #555;
+        }
+
+        /* Corner positions */
+        .info-link { top: 10px; right: 10px; }
+        .connect-link { bottom: 10px; right: 10px; }
+        .more-link { top: 10px; left: 10px; }
+        .instagram-link { bottom: 10px; left: 10px; }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 300px;
+            width: 80%;
+        }
+
+        .close-btn {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-btn:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <!-- Corner Links -->
+    <a class="corner-link info-link" onclick="openModal('infoModal')">Info</a>
+    <a class="corner-link connect-link" onclick="openModal('connectModal')">Connect</a>
+    <a class="corner-link more-link" onclick="openModal('moreModal')">More</a>
+    <a class="corner-link instagram-link" href="https://instagram.com" target="_blank">Instagram</a>
+
+    <!-- Modals -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <p>Information about the website.</p>
+            <button class="close-btn" onclick="closeModal('infoModal')">Close</button>
+        </div>
+    </div>
+
+    <div id="connectModal" class="modal">
+        <div class="modal-content">
+            <p>Connect with us through our channels.</p>
+            <button class="close-btn" onclick="closeModal('connectModal')">Close</button>
+        </div>
+    </div>
+
+    <div id="moreModal" class="modal">
+        <div class="modal-content">
+            <p>More information and options.</p>
+            <button class="close-btn" onclick="closeModal('moreModal')">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to open a modal
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        // Function to close a modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal if user clicks outside the content area
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
