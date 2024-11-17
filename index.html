@@ -19,6 +19,7 @@
             height: 100vh;
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
+            flex-direction: column;
         }
 
         .corner-link {
@@ -77,6 +78,15 @@
 
         .close-btn:hover {
             background-color: #555;
+        }
+        img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
         }
     </style>
 </head>
