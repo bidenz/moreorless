@@ -1,6 +1,36 @@
 <style>
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .corner-link {
+            position: absolute;
+            font-size: 1rem;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .corner-link:hover {
+            color: #555;
+        }
   p { color: blue }
   #mylink {text-decoration: none;}
+  .back-link { top: 10px; left: 10px;  }
 </style>
-<a href="/" id="mylink">back</a>
+
+<a href="/" class="corner-link back-link" id="mylink">back</a>
 <p>my portfolio will be here soon</p>
