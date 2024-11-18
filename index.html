@@ -28,7 +28,7 @@
             align-items: center;
         }
 
-        /* Text inside the hero section 
+        Text inside the hero section 
         .hero-text {
             position: relative;
             z-index: 1;
@@ -37,7 +37,7 @@
             font-weight: bold;
             text-align: center;
             text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
-        }*/
+        }
 
         /* Overlay to darken the image for readability 
         .hero::before {
@@ -73,6 +73,15 @@
             text-decoration: none;
             border-radius: 10px;
             transition: background-color 0.3s;
+        }
+        
+        .portfolio-link1 {
+            position: relative;
+            width: 100vw;
+            height: 100vh; /* Full screen */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .portfolio-link:hover {
@@ -120,12 +129,13 @@
     <a class="corner-link more-link" onclick="openModal('moreModal')">More</a>
     <a class="corner-link instagram-link" href="https://instagram.com/bidenz/" target="_blank">Instagram</a>
     <!--<a class="corner-link portfolio-link" href="/portfolio.html">Portfolio</a>-->
+   
     <!-- Hero Section -->
     <div class="hero">
         <div class="hero-text">
            <!--Welcome to My Website-->
             <br />
-           <!-- <a class="portfolio-link" onclick="scrollToBlock()">Explore Portfolio</a>-->
+           <a class="portfolio-link1" onclick="scrollToBlock()"></a>
         </div>
     </div>
 
