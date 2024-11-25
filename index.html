@@ -144,6 +144,7 @@
         .instagram-link { bottom: 10px; left: 10px; }*/
         /* Modal styles */
         .modal {
+            position: relative;
             display: none;
             position: fixed;
             top: 0;
@@ -157,6 +158,7 @@
         }
 
         .modal-content {
+            position: relative;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -166,18 +168,26 @@
         }
 
         .close-btn {
+            all: unset;
+            position: relative;
             margin-top: 10px;
             padding: 5px 10px;
-            background-color: #333;
-            color: #fff;
-            border: none;
+            color: #000; /* Text color */
             cursor: pointer;
             transition: 0.3s;
         }
 
-        .close-btn:hover {
-            background-color: #555;
+        .sparkle-canvas {
+            position: absolute;
+            top: 0; /* Align to button's top */
+            left: 0; /* Align to button's left */
+            width: 100%; /* Match button width */
+            height: 100%; /* Match button height */
         }
+
+        /*.close-btn:hover {
+            background-color: #555;
+        }*/
 
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -205,7 +215,7 @@
     <div id="infoModal" class="modal">
         <div class="modal-content">
             <p>Information about the website.</p>
-            <button class="close-btn" onclick="closeModal('infoModal')">Close</button>
+            <button class="close-btn" id="close-btn" onclick="closeModal('infoModal')">Close</button>
         </div>
     </div>
 
@@ -228,6 +238,28 @@
     </div>
 
     <script>
+
+        // Function to open a modal
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'flex';
+        }
+
+        // Function to close a modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal if user clicks outside the content area
+        window.onclick = function(event) {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    });
+};
+
         function scrollToBlock() {
             const whiteBlock = document.getElementById('whiteBlock');
             whiteBlock.scrollIntoView({ behavior: 'smooth' });
@@ -237,11 +269,11 @@
 
         $(document).ready(function () {
             // Apply sparkle effect to all text elements
-            $(".portfolio-link, .corner-link").sparkleh({
-                count: 1000,
+            $(".portfolio-link, .corner-link, .close-btn").sparkleh({
+                count: 100,
                 color: ['#FFFFFF', '#a4fcfc', '#a4a6a6', '#f3ff52', '#fb8bfc'],
                 speed: 2,
-                /*overlap: 5*/
+                overlap: 0
             });
         });
 
@@ -288,17 +320,17 @@
                     .addClass("sparkle-canvas")
                     .css({
                         position: "absolute",
-                        top: "-" + _this.options.overlap + "px",
-                        left: "-" + _this.options.overlap + "px",
-                        "pointer-events": "none"
+                        top: "0px", // Ensure it's aligned with the top of the button
+                        left: "0px", // Ensure it's aligned with the left of the button
+                         "pointer-events": "none"
                     })
                     .appendTo($parent);
 
                 this.canvas = this.$canvas[0];
                 this.context = this.canvas.getContext("2d");
 
-                this.canvas.width = this.options.width + this.options.overlap * 2;
-                this.canvas.height = this.options.height + this.options.overlap * 2;
+                this.canvas.width = $parent.outerWidth(); // Match width
+                this.canvas.height = $parent.outerHeight(); // Match height   
 
                 this.particles = this.createSparkles(this.canvas.width, this.canvas.height);
 
@@ -412,26 +444,6 @@
             },
         };
 
-
-        // Function to open a modal
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'flex';
-        }
-
-        // Function to close a modal
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        // Close modal if user clicks outside the content area
-        window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                }
-            });
-        }
     </script>
 </body>
 </html>
