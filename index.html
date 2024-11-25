@@ -143,8 +143,8 @@
         .more-link { top: 10px; left: 10px; }
         .instagram-link { bottom: 10px; left: 10px; }*/
         /* Modal styles */
+        
         .modal {
-            position: relative;
             display: none;
             position: fixed;
             top: 0;
@@ -161,11 +161,23 @@
             position: relative;
             z-index: 11;
             background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            max-width: 300px;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: left;
+            max-width: 600px;
             width: 80%;
+        }
+
+        .modal-content p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333; /* Adjust color as needed */
+        }
+
+        .modal-content a {
+            color: #007BFF; /* Default link color */
+            text-decoration: none; /* Remove underline */
+            font-weight: bold;
         }
 
         .close-btn {
@@ -216,7 +228,17 @@
 
     <div id="infoModal" class="modal">
         <div class="modal-content">
-            <p>Information about the website.</p>
+            <a>About page:</a>
+                <br /> 
+                <p><br />More or Less is a transdisciplinary collective based in Zurich, Switzerland, founded by Antonia Orfanou and Victoria Cheredeeva. 
+                <br />
+                <br />Their work combines interaction design principles, performing art and practice-based artistic research. The collective explores the intersections of technology and art enriched by philosophical and scientific perspectives.
+                <br />
+                <br /> Their projects are characterized by a deep curiosity about perception, experience and the boundaries of the visual, blending pop culture references and technological elements.
+                Driven by a love for experimentation, More or Less challenge the expected and creates for the joy of seeing different visual and conceptual worlds come together.
+                <br />
+                <br />Team members</p>
+
             <button class="close-btn" id="close-btn" onclick="closeModal('infoModal')">Close</button>
         </div>
     </div>
