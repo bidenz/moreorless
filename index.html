@@ -120,13 +120,14 @@
         }
 
         .corner-link {
-            position: fixed;
+            position: relative; /* Required for glitter hover */
             font-size: 1rem;
             color: #333;
             text-decoration: none;
             font-weight: bold;
-            transition: color 0.3s;
             cursor: pointer;
+            transition: color 0.3s;
+            padding: 5px 5px;
         }
 
         /*.corner-link:hover {
@@ -145,11 +146,11 @@
     </style>
 </head>
 <body>
-    <a class="corner-link info-link" onclick="openModal('infoModal')">Info</a>
+    <!--<a class="corner-link info-link" onclick="openModal('infoModal')">Info</a>
     <a class="corner-link connect-link" onclick="openModal('connectModal')">Connect</a>
     <a class="corner-link more-link" onclick="openModal('moreModal')">More</a>
     <a class="corner-link instagram-link" href="https://instagram.com/bidenz/" target="_blank">Instagram</a>
-    <!--<a class="corner-link portfolio-link" href="/portfolio.html">Portfolio</a>-->
+    <a class="corner-link portfolio-link" href="/portfolio.html">Portfolio</a>-->
    
     <!-- Hero Section -->
     <div class="hero">
