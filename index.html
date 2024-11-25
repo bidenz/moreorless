@@ -156,12 +156,12 @@
             align-items: center;
             z-index: 10;
         }
+        
 
         .modal-content {
             position: relative;
             z-index: 11;
             background-color: #fff;
-            padding: 40px;
             border-radius: 10px;
             text-align: left;
             max-width: 600px;
@@ -171,13 +171,19 @@
         .modal-content p {
             font-size: 16px;
             line-height: 1.5;
-            color: #333; /* Adjust color as needed */
+            color: #333;
+            padding: 40px; /* Adjust color as needed */
         }
 
         .modal-content a {
             color: #007BFF; /* Default link color */
             text-decoration: none; /* Remove underline */
             font-weight: bold;
+            padding: 40px;
+        }
+        
+        .modal-content c {
+            padding: 10px;
         }
 
         .close-btn {
@@ -185,7 +191,7 @@
             z-index: 12;
             position: relative;
             margin-top: 10px;
-            padding: 5px 10px;
+            padding: 5px 5px;
             color: #000; /* Text color */
             cursor: pointer;
             transition: 0.3s;
@@ -228,6 +234,9 @@
 
     <div id="infoModal" class="modal">
         <div class="modal-content">
+            <c><button class="close-btn" id="close-btn" onclick="closeModal('infoModal')">X</button><c/>
+            <br /> 
+            <br /> 
             <a>About page:</a>
                 <br /> 
                 <p><br />More or Less is a transdisciplinary collective based in Zurich, Switzerland, founded by Antonia Orfanou and Victoria Cheredeeva. 
@@ -238,8 +247,6 @@
                 Driven by a love for experimentation, More or Less challenge the expected and creates for the joy of seeing different visual and conceptual worlds come together.
                 <br />
                 <br />Team members</p>
-
-            <button class="close-btn" id="close-btn" onclick="closeModal('infoModal')">Close</button>
         </div>
     </div>
 
