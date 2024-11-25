@@ -21,18 +21,25 @@
             overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
+        .corner-wrapper {
+            position: fixed;
+            z-index: 100; /* Ensure links are on top */
+        }
+
+        .back-link-wrapper {
+            top: 10px;
+            right: 10px;
+        }
+
         .corner-link {
-            position: absolute;
+            position: relative; /* Required for glitter hover */
             font-size: 1rem;
-            color: #ffffff;
+            color: #333;
             text-decoration: none;
             font-weight: bold;
-            transition: color 0.3s;
             cursor: pointer;
-            padding: 10px 20px;
-            background-color: #abe811;
-            border-radius: 10px;
-            transition: background-color 0.3s;
+            transition: color 0.3s;
+            padding: 5px 5px;
         }
 
         .hero {
@@ -49,12 +56,18 @@
             color: #282727;
         }
   p { color: blue }
-  #mylink {text-decoration: none;}
-  .back-link { top: 10px; left: 10px;  }
-</style>
 
-<a href="/" class="corner-link back-link" id="mylink">back</a>
-<!--<p>my portfolio will be here soon</p>-->
+
+  
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="corner-wrapper back-link-wrapper">
+    <a class="corner-link back-link" onclick="openModal('infoModal')">back</a>
+</div>
+
+<!--<a href="/" class="corner-link back-link" id="mylink">back</a>
+<p>my portfolio will be here soon</p>-->
 <div class="hero">
     <div class="hero-text">
        <!--Welcome to My Website-->
@@ -62,5 +75,188 @@
         <!--<a class="portfolio-link" onclick="scrollToBlock()"></a>-->
     </div>
 </div>
+
+<script>
+
+
+
+    $(document).ready(function () {
+        // Apply sparkle effect to all text elements
+        $(".corner-link back-link").sparkleh({
+            count: 100,
+            color: ['#FFFFFF', '#a4fcfc', '#a4a6a6', '#f3ff52', '#fb8bfc'],
+            speed: 2,
+            overlap: 0
+        });
+    });
+
+    $.fn.sparkleh = function (options) {
+        return this.each(function (k, v) {
+            const $this = $(v).css('position', 'relative');
+
+            const settings = $.extend(
+                {
+                    width: $this.outerWidth(),
+                    height: $this.outerHeight(),
+                    color: '#FFFFFF',
+                    count: 80,
+                    overlap: 0,
+                    speed: 1,
+                },
+                options
+            );
+
+            const sparkle = new Sparkle($this, settings);
+
+            $this.on({
+                "mouseover focus": function () {
+                    sparkle.resetParticles();
+                    sparkle.over();
+                },
+                "mouseout blur": function () {
+                    sparkle.out();
+                }
+            });
+        });
+    };
+
+    function Sparkle($parent, options) {
+        this.options = options;
+        this.init($parent);
+    }
+
+    Sparkle.prototype = {
+        init: function ($parent) {
+            const _this = this;
+
+            this.$canvas = $("<canvas>")
+                .addClass("sparkle-canvas")
+                .css({
+                    position: "absolute",
+                    top: "0px", // Ensure it's aligned with the top of the button
+                    left: "0px", // Ensure it's aligned with the left of the button
+                     "pointer-events": "none"
+                })
+                .appendTo($parent);
+
+            this.canvas = this.$canvas[0];
+            this.context = this.canvas.getContext("2d");
+
+            this.canvas.width = $parent.outerWidth(); // Match width
+            this.canvas.height = $parent.outerHeight(); // Match height   
+
+            this.particles = this.createSparkles(this.canvas.width, this.canvas.height);
+
+            this.anim = null;
+        },
+
+        createSparkles: function (w, h) {
+            const holder = [];
+            for (let i = 0; i < this.options.count; i++) {
+                let color = this.options.color;
+                if ($.type(this.options.color) === 'array') {
+                    color =
+                        this.options.color[
+                            Math.floor(Math.random() * this.options.color.length)
+                        ];
+                }
+                holder[i] = {
+                    position: {
+                        x: Math.floor(Math.random() * w),
+                        y: Math.floor(Math.random() * h),
+                    },
+                    delta: {
+                        x: Math.floor(Math.random() * 1000) - 500,
+                        y: Math.floor(Math.random() * 1000) - 500,
+                    },
+                    size: parseFloat((Math.random() * 2).toFixed(2)),
+                    color: color,
+                };
+            }
+            return holder;
+        },
+
+        draw: function () {
+            const ctx = this.context;
+            ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            for (let i = 0; i < this.options.count; i++) {
+                const particle = this.particles[i];
+
+                ctx.save();
+                ctx.globalAlpha = 0.8;
+                ctx.fillStyle = particle.color;
+                ctx.beginPath();
+
+                const sides = 5;
+                const radius = particle.size * 0.5;
+                const angle = (2 * Math.PI) / sides;
+
+                for (let j = 0; j <= sides; j++) {
+                    const x =
+                        particle.position.x + radius * Math.cos(j * angle);
+                    const y =
+                        particle.position.y + radius * Math.sin(j * angle);
+                    if (j === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                }
+                ctx.closePath();
+                ctx.fill();
+                ctx.restore();
+            }
+        },
+
+        update: function () {
+            const _this = this;
+
+            this.anim = window.requestAnimationFrame(function () {
+                for (let i = 0; i < _this.options.count; i++) {
+                    const particle = _this.particles[i];
+
+                    particle.position.x +=
+                        (particle.delta.x * _this.options.speed) / 1500;
+                    particle.position.y +=
+                        (particle.delta.y * _this.options.speed) / 800;
+
+                    if (
+                        particle.position.x > _this.canvas.width ||
+                        particle.position.x < 0
+                    ) {
+                        particle.position.x = Math.random() * _this.canvas.width;
+                    }
+
+                    if (
+                        particle.position.y > _this.canvas.height ||
+                        particle.position.y < 0
+                    ) {
+                        particle.position.y = Math.random() * _this.canvas.height;
+                    }
+                }
+
+                _this.draw();
+                _this.update();
+            });
+        },
+
+        over: function () {
+            this.update();
+        },
+
+        out: function () {
+            window.cancelAnimationFrame(this.anim);
+            this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        },
+
+        resetParticles: function () {
+            this.particles = this.createSparkles(
+                this.canvas.width,
+                this.canvas.height
+            );
+        },
+    };
+
+</script>
 </body>
 </html>
