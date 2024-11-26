@@ -172,24 +172,44 @@
             position: relative;
             z-index: 11;
             background-color: #fff;
-            border-radius: 10px;
-            text-align: left;
-            max-width: 600px;
-            width: 80%;
+            border-radius: 20px;
+            text-align:justify;
+            max-width: 1000px;
+            width: 60%;
+        }
+
+        .modal-content h1 {
+            font-size: 11px;
+            font-style: italic;
+            line-height: 1.2;
+            color: #333;
+            margin: 0 0 1.5em; /* Add spacing between paragraphs */
+            padding: 0px 150px 20px; /* Remove unnecessary padding */
+        }
+
+        .modal-content h3 {
+            font-size: 25px;
+            line-height: 0;
+            color: #333;
+            margin: 0 0 0.8em;  /*Add spacing between paragraphs */
+            padding: 0px 150px 0px; /* Remove unnecessary padding */
         }
 
         .modal-content p {
-            font-size: 16px;
-            line-height: 1.5;
+            font-size: 13px;
+            line-height: 1;
             color: #333;
-            padding: 40px; /* Adjust color as needed */
+            margin: 0 0 1.5em; /* Add spacing between paragraphs */
+            padding: 0px 150px 20px; /* Remove unnecessary padding */
         }
-
         .modal-content a {
-            color: #007BFF; /* Default link color */
-            text-decoration: none; /* Remove underline */
-            font-weight: bold;
-            padding: 40px;
+            font-size: 18px;
+            font-family: 'bodoni';
+            font-style: italic;
+            line-height: 1;
+            color: #333;
+            margin: 0 0 1.5em; /* Add spacing between paragraphs */
+            padding: 0px 0px 0px; /* Remove unnecessary padding */
         }
         
         .modal-content c {
@@ -201,10 +221,11 @@
             z-index: 12;
             position: relative;
             margin-top: 10px;
-            padding: 5px 5px;
+            padding: 5px 5px 5px;
             color: #000; /* Text color */
             cursor: pointer;
             transition: 0.3s;
+            line-height: 0.5;
         }
 
         .sparkle-canvas {
@@ -230,7 +251,7 @@
     <a class="corner-link portfolio-link" href="/portfolio.html">Portfolio</a>-->
    
     <div class="corner-wrapper info-link-wrapper">
-        <a class="corner-link info-link" onclick="openModal('infoModal')">Info</a>
+        <a class="corner-link info-link" onclick="openModal('infoModal')">ABOUT</a>
     </div>
     <div class="corner-wrapper connect-link-wrapper">
         <a class="corner-link connect-link" onclick="openModal('connectModal')">Connect</a>
@@ -244,19 +265,32 @@
 
     <div id="infoModal" class="modal">
         <div class="modal-content">
-            <c><button class="close-btn" id="close-btn" onclick="closeModal('infoModal')">X</button><c/>
-            <br /> 
-            <br /> 
-            <a>About page:</a>
-                <br /> 
-                <p><br />More or Less is a transdisciplinary collective based in Zurich, Switzerland, founded by Antonia Orfanou and Victoria Cheredeeva. 
+            <c><button class="close-btn" id="close-btn" onclick="closeModal('infoModal')">×</button></c>
+                <p><a>MORE OR LESS</a> is a transdisciplinary collective based in Zurich, Switzerland, founded by <a>Antonia Orfanou</a> and <a>Victoria Cheredeeva</a>. 
                 <br />
-                <br />Their work combines interaction design principles, performing art and practice-based artistic research. The collective explores the intersections of technology and art enriched by philosophical and scientific perspectives.
+                <br />Their work combines interaction design principles, performing art and practice-based artistic research. The collective explores the intersections of <a>technology</a> and <a>art</a> enriched by philosophical and scientific perspectives.
                 <br />
                 <br /> Their projects are characterized by a deep curiosity about perception, experience and the boundaries of the visual, blending pop culture references and technological elements.
                 Driven by a love for experimentation, More or Less challenge the expected and creates for the joy of seeing different visual and conceptual worlds come together.
+                </p>
                 <br />
-                <br />Team members</p>
+                <h3>Team members</h3>
+                <h1><a>Antonia Orfanou</a> was born in Athens, Greece, in 1996 and is currently
+                    based in Zurich, Switzerland. She is an interdisciplinary
+                    interaction designer with a background in mechanical engineering,
+                    known for her creative approach and meticulous attention
+                    to detail. Her work is an interplay between technology, science,
+                    and art, with a great interest in complete design processes, from
+                    research to prototype development.
+                <br />
+                <br /> <a>Victoria Cheredeeva</a> was born in Moscow, Russia, in 1995. She
+                is a multimedia conceptual designer and artist based in Zurich.
+                She holds a Master’s degree in Fine Arts and Interaction Design.
+                Recently, her main research topic became pop culture, especially
+                how it is uncovered in pop music. Across mediums, her work is
+                characterized by improvisation, experimentation, and immediacy.
+                <br /></h1>
+                
         </div>
     </div>
 
